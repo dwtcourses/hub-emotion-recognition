@@ -67,4 +67,4 @@ description = "How well can this model predict your emotions? Take a picture wit
 thumbnail = "https://raw.githubusercontent.com/gradio-app/hub-emotion-recognition/master/thumbnail.png"
 
 gr.Interface(predict, inp, out, capture_session=True, title=title, thumbnail=thumbnail,
-             description=description).launch(inbrowser=True, share=True)
+             description=description).launch(inbrowser=True)
