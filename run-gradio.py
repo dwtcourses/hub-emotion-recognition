@@ -64,6 +64,7 @@ out = [
 title = "Emotion Classification"
 description = "How well can this model predict your emotions? Take a picture with your webcam, and it will guess if" \
               " you are: happy, sad, angry, disgusted, scared, surprised, or neutral."
+thumbnail = "https://raw.githubusercontent.com/gradio-app/hub-emotion-recognition/master/thumbnail.png"
 
-gr.Interface(predict, inp, out, capture_session=True, title=title,
+gr.Interface(predict, inp, out, capture_session=True, title=title, thumbnail=thumbnail,
              description=description).launch(inbrowser=True, share=True)
