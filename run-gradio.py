@@ -40,30 +40,30 @@ def predict(frame):
         roi = np.expand_dims(roi, axis=0)
 
         preds = emotion_classifier.predict(roi)[0]
-        emotion_probability = np.max(preds)
         label = EMOTIONS[preds.argmax()]
     else:
         return frameClone, "Can't find your face"
 
     probs = {}
+    cv2.putText(frameClone, label, (fX, fY - 10),
+                cv2.FONT_HERSHEY_DUPLEX, 1, (238, 164, 64), 1)
+    cv2.rectangle(frameClone, (fX, fY), (fX + fW, fY + fH),
+                  (238, 164, 64), 2)
+
     for (i, (emotion, prob)) in enumerate(zip(EMOTIONS, preds)):
-        probs[emotion] = str(prob)
-        cv2.putText(frameClone, label, (fX, fY - 10),
-                    cv2.FONT_HERSHEY_DUPLEX, 1, (238, 164, 64), 1)
-        cv2.rectangle(frameClone, (fX, fY), (fX + fW, fY + fH),
-                      (238, 164, 64), 2)
+        probs[emotion] = float(prob)
+
     return frameClone, probs
+
 
 inp = gr.inputs.Webcam(label="Your face")
 out = [
     gr.outputs.Image(label="Predicted Emotion"),
     gr.outputs.Label(num_top_classes=3, label="Top 3 Probabilities")
 ]
-title="Emotion Classification"
-description="Classifies an image of a face into one of seven emotions: " \
-            "happy, sad, angry, disgusted, scared, surprised, " \
-            "and neutral"
+title = "Emotion Classification"
+description = "How well can this model predict your emotions? Take a picture with your webcam, and it will guess if" \
+              " you are: happy, sad, angry, disgusted, scared, surprised, or neutral."
 
 gr.Interface(predict, inp, out, capture_session=True, title=title,
-             description=description).launch(
-    inbrowser=True)
+             description=description).launch(inbrowser=True, share=True)
