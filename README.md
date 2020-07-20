@@ -1,4 +1,7 @@
 # Project Name : Emotion-recognition
+
+![](https://raw.githubusercontent.com/gradio-app/hub-emotion-recognition/master/thumbnail.png)
+
 # Table of Content :
 1.[Description](#p1)
 
