@@ -56,7 +56,7 @@ def predict(frame):
     return frameClone, probs
 
 
-inp = gr.inputs.Webcam(label="Your face")
+inp = gr.inputs.Image(source="webcam", label="Your face")
 out = [
     gr.outputs.Image(label="Predicted Emotion"),
     gr.outputs.Label(num_top_classes=3, label="Top 3 Probabilities")
